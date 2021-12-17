@@ -1,5 +1,5 @@
 {
-	"name": "TestOUTPUTcsv",
+	"name": "3csv",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputBlob",
