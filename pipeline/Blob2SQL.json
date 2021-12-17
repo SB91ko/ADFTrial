@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "CSV2SQL",
+				"description": "Trial on COPYDATA",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
