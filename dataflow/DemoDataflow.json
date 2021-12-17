@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "InputWarehouseCSV",
 						"type": "DatasetReference"
 					},
 					"name": "input"
@@ -15,14 +15,14 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable2",
+						"referenceName": "TestWarehouseChinaSQL",
 						"type": "DatasetReference"
 					},
 					"name": "SinkSQLChina"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable3",
+						"referenceName": "TestWarehouseDefaultSQL",
 						"type": "DatasetReference"
 					},
 					"name": "SinkDefault"

@@ -118,13 +118,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "InputWarehouseCSV",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "TestWarehouseSQL",
 						"type": "DatasetReference"
 					}
 				]

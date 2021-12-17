@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "InputWarehouseCSV",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputBlob",
