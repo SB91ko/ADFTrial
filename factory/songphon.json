@@ -1,0 +1,9 @@
+{
+	"name": "songphon",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "317d08a4-9143-48dc-b325-d4079c3e7694",
+		"tenantId": "0ff7c4f0-6941-47b4-bfed-477533d2c651"
+	}
+}

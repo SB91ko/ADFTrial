@@ -1,0 +1,45 @@
+{
+	"name": "DemoDataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "input"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable2",
+						"type": "DatasetReference"
+					},
+					"name": "SinkSQLChina"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable3",
+						"type": "DatasetReference"
+					},
+					"name": "SinkDefault"
+				}
+			],
+			"transformations": [
+				{
+					"name": "ConditionalSplit1"
+				},
+				{
+					"name": "TestAddcolumn"
+				},
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\tWAREHOUSE_ID as string,\n\t\tNAME as string,\n\t\tLOCATION as string,\n\t\t{PRODUCT_NAME } as string,\n\t\t{TOTAL STOCK} as string,\n\t\t{REORDER POINT} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> input\nTestAddcolumn split(LOCATION == \"Guanzho, China\",\n\tdisjoint: false) ~> ConditionalSplit1@(SlpitLocChina, SlpitLocDefault)\nSelect1 derive(TestCol = \"None\") ~> TestAddcolumn\ninput select(mapColumn(\n\t\tWAREHOUSE_ID,\n\t\tNAME,\n\t\tLOCATION,\n\t\tPRODUCT_NAME = {PRODUCT_NAME },\n\t\tTOTAL_STOCK = {TOTAL STOCK},\n\t\tREORDER_POINT = {REORDER POINT}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nConditionalSplit1@SlpitLocChina sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> SinkSQLChina\nConditionalSplit1@SlpitLocDefault sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> SinkDefault"
+		}
+	}
+}
