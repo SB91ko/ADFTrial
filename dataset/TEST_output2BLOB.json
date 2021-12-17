@@ -1,0 +1,21 @@
+{
+	"name": "TEST_output2BLOB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "inputBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
